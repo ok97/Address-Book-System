@@ -10,12 +10,12 @@ namespace Address_Book_System
     */
     class AddressBookMain
     {
-        static void Main(string[] args)
+        static void Main(string[] args)  //Main method
         {
             Console.WriteLine("******* Welcome To AddressBook *******");
           
-            Console.Write("Enter First Name:- ");
-            string firstName = Console.ReadLine();
+            Console.Write("Enter First Name:- ");  // Take input 
+            string firstName = Console.ReadLine(); //Store input in firstName variable
             Console.Write("Enter Last Name:- ");
             string lastName = Console.ReadLine();
             Console.Write("Enter Address:- ");
