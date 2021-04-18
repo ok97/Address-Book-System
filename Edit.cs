@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Address_Book_System
-{           /* UC3:- Ability to edit existing contact person using their name - Use Console to edit person details
-               
+{           /* UC4:- Ability to delete a person using person's name - Use Console to delete a person              
             */
     class Edit  // Class Edit
     {
@@ -130,6 +129,21 @@ namespace Address_Book_System
                     }
                 } //end of edit() method
             }
+        }
+        public void DeleteRecord(string firstName)  //Delte Record Method
+        {
+            for (int i = 0; i < list.Count; i++)   //Cheack record present or not
+            {                
+                if (list[i].FirstName.Equals(firstName))  //Cheack list of record and user inpute same or not
+                {
+                    list.Remove(this.person); //Remove Record from Person class
+                    Console.WriteLine($"{firstName} Name of Record Delete Successfully"); //Print Record Delete
+                }
+                else
+                {
+                    Console.WriteLine($"{firstName} Name of Record Not Found "); //Print Record not found
+                }                
+            }             
         }
         
     }
