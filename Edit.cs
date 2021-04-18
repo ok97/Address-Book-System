@@ -6,13 +6,6 @@ using System.Threading.Tasks;
 
 namespace Address_Book_System
 {           /* UC3:- Ability to edit existing contact person using their name - Use Console to edit person details
-               UC4:- Ability to delete a person using person's name - Use Console to delete a person
-               UC5:- Ability to add multiple person to Address Book 
-                     - Use Console to add person details one at a time 
-                     - Use Collection Class to maintain multiple contact persons in Address Book 
-               UC6:- Refactor to add multiple Address Book to the System. 
-                     Each Address Book has a unique Name 
-                     - Use Console to add new Address Book - Maintain Dictionary of Address Book Name to Address Book
                
             */
     class Edit  // Class Edit
@@ -94,7 +87,7 @@ namespace Address_Book_System
                         switch (choice)  //case 
                         {
                             case 1:
-                                Console.Write("Enter new Street:-  ");  //Take input user
+                                Console.Write("Enter new Address:-  ");  //Take input user
                                 String address = Console.ReadLine();   //store address veriable
                                 person.Address = address;  //store class of person address data
                                 break;
@@ -138,37 +131,6 @@ namespace Address_Book_System
                 } //end of edit() method
             }
         }
-        public void DeleteRecord(string firstName)  //Delte Record Method
-        {
-            for (int i = 0; i < list.Count; i++)   //Cheack record present or not
-            {                
-                if (list[i].FirstName.Equals(firstName))  //Cheack list of record and user inpute same or not
-                {
-                    list.Remove(this.person); //Remove Record from Person class
-                    Console.WriteLine($"{firstName} Name of Record Delete Successfully"); //Print Record Delete
-                }
-                else
-                {
-                    Console.WriteLine($"{firstName} Name of Record Not Found "); //Print Record not found
-                }                
-            }             
-        }
-        public bool CheckExist(string fname)  //Check exist method
-        {
-            int flag = 0;
-            foreach (Person person in list) //Check list of class person
-            {
-                if (person.FirstName.Equals(fname)) //check first name and user input are equal or not
-                {
-                    flag = 1;
-                    break;
-                }
-            }
-            if (flag == 1)
-            {
-                return true;
-            }
-            return false;
-        }
+        
     }
 }
