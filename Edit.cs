@@ -5,12 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Address_Book_System
-{           /* UC3:- Ability to edit existing contact person using their name - Use Console to edit person details
-               UC4:- Ability to delete a person using person's name - Use Console to delete a person
-               UC5:- Ability to add multiple person to Address Book 
-                     - Use Console to add person details one at a time 
-                     - Use Collection Class to maintain multiple contact persons in Address Book 
-               UC6:- Refactor to add multiple Address Book to the System. Each Address Book has a unique Name 
+{           /* UC6:- Refactor to add multiple Address Book to the System.Each Address Book has a unique Name 
                      - Use Console to add new Address Book - Maintain Dictionary of Address Book Name to Address Book
             */
     class Edit  // Class Edit
