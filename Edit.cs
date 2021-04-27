@@ -3,15 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Address_Book_System
-{           /* UC3:- Ability to edit existing contact person using their name - Use Console to edit person details
-               UC4:- Ability to delete a person using person's name - Use Console to delete a person
+{           /*   UC6:- Refactor to add multiple Address Book to the System.Each Address Book has a unique Name 
+                     - Use Console to add new Address Book - Maintain Dictionary of Address Book Name to Address Book
             */
     class Edit  // Class Edit
     {
+        public static bool PhoneNumberValidation(String phone)
+        {
+            String PPattern = @"^\+?\d{0,2}\-?\d{4,5}\-?\d{5,6}"; //Define Phone Number Pattern
+            Regex Pregex = new Regex(PPattern); //create object of the Regex class (its Regesx predefine class)
+            return Pregex.IsMatch(phone);
+        }
+        public static bool EmailValidation(String email)
+        {
+            String Epattern = @"^[a-z]+([-+*.]?[0-9a-z])*@[a-z0-9]+\.(\.?[a-z]{2,}){1,2}$"; //Define Email Pattern
+            Regex eregex = new Regex(Epattern); //create object of the Regex class (its Regesx predefine class)
+            return eregex.IsMatch(email);
+
+        }
+        public static bool ZipValidation(String zip)  //Zip Method
+        {
+            String ZPattern = "^[0-9]{6}(?:-[0-9]{6})?$";  //Define Zip Code Pattern
+            Regex Zregex = new Regex(ZPattern); //create object of the Regex class (its Regesx predefine class)
+            return Zregex.IsMatch(zip);
+        }
+
         Person person = null;
-       
+
         List<Person> list = new List<Person>(); //create a list of Person objects
 
         String fname = null; //empty string
@@ -43,10 +64,29 @@ namespace Address_Book_System
             state = Console.ReadLine();        //Store input for state
             Console.Write("Enter Zip:- "); //Take input user
             zip = Console.ReadLine();         //Store input for zip
-            Console.Write("Enter Phone Number:-"); //Take input user
+            while (!ZipValidation(zip))  
+            {
+                Console.Write(zip + " is Invalid Zip Code \nPlease Enter Valid Zip:- ");
+                zip = Console.ReadLine();
+            }
+
+            Console.Write("Enter Phone Number:- "); //Take input user
             phone = Console.ReadLine();           //Store input for phone
+            while(!PhoneNumberValidation(phone))
+            {
+                Console.Write(phone + " is Invalid Phone Number \nPlease Enter Valid Number:- ");
+                phone = Console.ReadLine();
+            }
+
             Console.Write("Enter Email:- ");  //Take input user
             email = Console.ReadLine();           //Store input for email
+
+            while (!EmailValidation(email))
+            {
+                Console.Write(email + " is Invalid Email \nPlease Enter Valid Email:- ");
+                email = Console.ReadLine();
+            }
+
             person = new Person(fname, lname, address, city, state, phone, zip, email);
             list.Add(person);   //adding list data person
         }
@@ -60,7 +100,7 @@ namespace Address_Book_System
             {
                 foreach (Person k in list)
                 {
-                    Console.WriteLine(k);  
+                    Console.WriteLine(k);
                 }
             }
         }
@@ -70,8 +110,9 @@ namespace Address_Book_System
             {
                 if (list[k].FirstName.Equals(fname))
                 {
-                    Person person = list[k]; 
+                    Person person = list[k];
                     Console.WriteLine(person);  //Print person
+
                     while (k == 0)  // k==0 to edite contact
                     {
                         Console.WriteLine("What Do You Want to edit Contact Details \n"
@@ -81,13 +122,13 @@ namespace Address_Book_System
                                 + "4. Zip Code\n"
                                 + "5. Phone\n"
                                 + "6. Email\n"
-                                + "7. Save And Exit\n");                    
-                        
+                                + "7. Save And Exit\n");
+
                         int choice = Convert.ToInt32(Console.ReadLine());  //convert string and store choice
                         switch (choice)  //case 
                         {
                             case 1:
-                                Console.Write("Enter new Street:-  ");  //Take input user
+                                Console.Write("Enter new Address:-  ");  //Take input user
                                 String address = Console.ReadLine();   //store address veriable
                                 person.Address = address;  //store class of person address data
                                 break;
@@ -104,23 +145,38 @@ namespace Address_Book_System
                             case 5:
                                 Console.Write("Enter new Phone:- "); //Take input user
                                 String phone = Console.ReadLine();   //store phone veriable
+                                while (!PhoneNumberValidation(phone))
+                                {
+                                    Console.Write(phone + " is Invalid Phone Number \nPlease Enter Valid Number:- ");
+                                    phone = Console.ReadLine();
+                                }
                                 person.PhoneNo = phone;                 //store class of person phone data
                                 break;
                             case 4:
                                 Console.Write("Enter new Zip Code:- "); //Take input user
                                 String zip = Console.ReadLine();        //store zip veriable
+                                while (!ZipValidation(zip))
+                                {
+                                    Console.Write(zip + " is Invalid Zip Code \nPlease Enter Valid Zip:- ");
+                                    zip = Console.ReadLine();
+                                }
                                 person.ZipCode = zip;                       //store class of person zip data
                                 break;
                             case 6:
                                 Console.Write("Enter new Email:- "); //Take input user
-                                String email = Console.ReadLine();         //store email veriable
+                                String email = Console.ReadLine();
+                                while (!EmailValidation(email))
+                                {
+                                    Console.Write(email + " is Invalid Email \nPlease Enter Valid Email:- ");
+                                    email = Console.ReadLine();
+                                }//store email veriable
                                 person.Email = email;                       //store class of person Email data
                                 break;
                             case 7:
                                 k = 1;
                                 break;
                             default:
-                                Console.WriteLine("Please Enter Valid Option");  
+                                Console.WriteLine("Please Enter Valid Option");
                                 break;
                         }
                         foreach (Person t in list) //automate the reading  t of person of class
@@ -129,12 +185,16 @@ namespace Address_Book_System
                         }
                     }
                 } //end of edit() method
+                else
+                {
+                    Console.WriteLine($"{fname} Name of Record Not Found "); //Print Record not found
+                }
             }
         }
         public void DeleteRecord(string firstName)  //Delte Record Method
         {
             for (int i = 0; i < list.Count; i++)   //Cheack record present or not
-            {                
+            {
                 if (list[i].FirstName.Equals(firstName))  //Cheack list of record and user inpute same or not
                 {
                     list.Remove(this.person); //Remove Record from Person class
@@ -143,8 +203,8 @@ namespace Address_Book_System
                 else
                 {
                     Console.WriteLine($"{firstName} Name of Record Not Found "); //Print Record not found
-                }                
-            }             
+                }
+            }
         }
         public bool CheckExist(string fname)  //Check exist method
         {
