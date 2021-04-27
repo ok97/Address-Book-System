@@ -223,5 +223,26 @@ namespace Address_Book_System
             }
             return false;
         }
+        public void SearchRecord(string city)  //Delte Record Method
+        {/* UC8:- Ability to search Person in a City or State across the multiple AddressBook
+                  - Search Result can show multiple person in the city or state
+         */
+            for (int i = 0; i < list.Count; i++)   //Cheack record present or not
+            {
+                if (list[i].City.Equals(city))  //Cheack list of record and user inpute same or not
+                {
+                    //list.Remove(this.person); //Remove Record from Person class
+                    Console.WriteLine($"{city} Name Present\n"); //Print Record City present
+                    foreach (var item in list)
+                    {
+                        DisplayRecord();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"{city} Name of Record Not Found "); //Print Record not found
+                }
+            }
+        }
     }
 }

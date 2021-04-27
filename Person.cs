@@ -10,6 +10,7 @@ namespace Address_Book_System
     */
     class Person
     {
+        internal static object firstname;
         private String lname, address, city, state, phone, zip, email; //Declaring (Creating) Variables
         public Person(String fname, String lname, String address, String city, String state, String phone, String zip,string email)
         {                                                   //constructor
