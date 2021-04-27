@@ -22,16 +22,16 @@ namespace Address_Book_System
             {
                 Console.WriteLine("**** Welcome To Address Book System ****");
                 Console.WriteLine("\n1.Add Address Book System\n2.Show Address Books System Names\n3.Search Person in City or State\n4.Exit "); //Print menu
-          
+
                 Console.Write("Enter Your Choice:- "); //Take input
-               int choice1 = Convert.ToInt32(Console.ReadLine()); //take input user and store choice1 veriable
-                               
-                    while(choice1>4)//Check input is greater or not
-                    {
-                        Console.WriteLine("Plz Enter Valid Option"); //print 
-                        Console.Write("Enter Your Choice:-");  //take input
-                        choice1 = Convert.ToInt32(Console.ReadLine()); //store choice1
-                    }                
+                int choice1 = Convert.ToInt32(Console.ReadLine()); //take input user and store choice1 veriable
+
+                while (choice1 > 4)//Check input is greater or not
+                {
+                    Console.WriteLine("Plz Enter Valid Option"); //print 
+                    Console.Write("Enter Your Choice:-");  //take input
+                    choice1 = Convert.ToInt32(Console.ReadLine()); //store choice1
+                }
 
 
                 AddressBookMain addressBook = new AddressBookMain(); //Create Object AddressBookMain
@@ -62,7 +62,7 @@ namespace Address_Book_System
                         bool loop2 = true;
                         Console.WriteLine("**** Welcome To Address Book System ****");
                         int i = 0;
-                       // Edit edit = new Edit(); //Create object Edit class
+                        // Edit edit = new Edit(); //Create object Edit class
                         while (loop2)
                         {
                             Console.WriteLine("\n1. Add New Person      ");
@@ -108,11 +108,8 @@ namespace Address_Book_System
                             Console.WriteLine("Address Book System Name:-  " + keyValue.Key); //print 
                         }
                         break;
-                    case 3:
-                       
-                        Console.Write("Enter City Name To Search Records:- ");
-                        String city = Console.ReadLine();
-                        edit.SearchRecord(city); //call Delete record method
+                    case 3:                        
+                        edit.SearchRecordCityOrState(); //call Delete record method
                         break;
 
                     default:
@@ -122,6 +119,7 @@ namespace Address_Book_System
 
             }
         }
-        
+         
     }
 }
+

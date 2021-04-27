@@ -64,7 +64,7 @@ namespace Address_Book_System
             state = Console.ReadLine();        //Store input for state
             Console.Write("Enter Zip:- "); //Take input user
             zip = Console.ReadLine();         //Store input for zip
-            while (!ZipValidation(zip))  
+            while (!ZipValidation(zip))
             {
                 Console.Write(zip + " is Invalid Zip Code \nPlease Enter Valid Zip:- ");
                 zip = Console.ReadLine();
@@ -72,7 +72,7 @@ namespace Address_Book_System
 
             Console.Write("Enter Phone Number:- "); //Take input user
             phone = Console.ReadLine();           //Store input for phone
-            while(!PhoneNumberValidation(phone))
+            while (!PhoneNumberValidation(phone))
             {
                 Console.Write(phone + " is Invalid Phone Number \nPlease Enter Valid Number:- ");
                 phone = Console.ReadLine();
@@ -223,24 +223,64 @@ namespace Address_Book_System
             }
             return false;
         }
-        public void SearchRecord(string city)  //Delte Record Method
+        public void SearchRecordCityOrState()  //Delte Record Method
         {/* UC8:- Ability to search Person in a City or State across the multiple AddressBook
                   - Search Result can show multiple person in the city or state
          */
-            for (int i = 0; i < list.Count; i++)   //Cheack record present or not
+            Console.WriteLine("1.City\n2.State\nEnter Choice:-");
+            
+            int choice2=Convert.ToInt32( Console.ReadLine());
+            if (choice2 == 1)
             {
-                if (list[i].City.Equals(city))  //Cheack list of record and user inpute same or not
+                int count = 0;
+                Console.WriteLine("Searching contact by City");
+                Console.WriteLine("Enter City Name:-");
+                string city = Console.ReadLine();
+
+                for (int i = 0; i < list.Count; i++)   //Cheack record present or not
                 {
-                    //list.Remove(this.person); //Remove Record from Person class
-                    Console.WriteLine($"{city} Name Present\n"); //Print Record City present
-                    foreach (var item in list)
+                    if (list[i].City.Equals(city))  //Cheack list of record and user inpute same or not
                     {
-                        DisplayRecord();
+                        count++;
+                        //list.Remove(this.person); //Remove Record from Person class
+                        Console.WriteLine($"{city} City Name of Record Present\n"); //Print Record City present
+                        foreach (var item in list)
+                        {
+                            
+                            DisplayRecord();
+                            Console.WriteLine($"\nNumber of contact in the City:- {city} are {count}");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{city} City Name of Record Not Found "); //Print Record not found
                     }
                 }
-                else
+            }
+            else
+            {
+                int count = 0;
+                Console.WriteLine("Search Record by State");
+                Console.WriteLine("Enter State Name:-");
+                string state = Console.ReadLine();
+
+                for (int i = 0; i < list.Count; i++)   //Cheack record present or not
                 {
-                    Console.WriteLine($"{city} Name of Record Not Found "); //Print Record not found
+                    if (list[i].State.Equals(state))  //Cheack list of record and user inpute same or not
+                    {
+                        count++;
+                        //list.Remove(this.person); //Remove Record from Person class
+                        Console.WriteLine($"{state} State Name of Record Present\n"); //Print Record City present
+                        foreach (var item in list)
+                        {
+                            DisplayRecord();
+                            Console.WriteLine($"\nNumber of contact in the City:- {state} are {count}");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{state} State Name of Record Not Found "); //Print Record not found
+                    }
                 }
             }
         }
