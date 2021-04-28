@@ -244,7 +244,7 @@ namespace Address_Book_System
                     {
                         count++;                     
 
-                        Console.WriteLine($"Name:- { list[i].FirstName} City:- { list[i].City} "); //UC9 View person name and city
+                        
 
                     }
                     else
@@ -254,10 +254,7 @@ namespace Address_Book_System
 
                 }                
 
-                /* UC10:- Ability to get number of contact persons i.e. count by City or State.
-                          - Search Result will show count by city and by state.
-                */
-                Console.WriteLine($"\nNumber of contact in the City:- {city} are {count}");
+                
             }
             else
             {
