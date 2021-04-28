@@ -242,9 +242,7 @@ namespace Address_Book_System
                 {
                     if (list[i].City.Equals(city))  //Cheack list of record and user inpute same or not
                     {
-                        count++;                     
-
-                        
+                        count++;                   
 
                     }
                     else
@@ -252,7 +250,7 @@ namespace Address_Book_System
                         Console.WriteLine($"{city} City Name of Record Not Found "); //Print Record not found
                     }
 
-                }                
+                }              
 
                 
             }
