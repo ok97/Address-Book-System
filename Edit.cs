@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -106,7 +106,7 @@ namespace Address_Book_System
         }
         public void EditRecord(String fname) // EditRecord Method 
         {
-            for (int k = 0; k < list.Count; k++) //Value  present or not
+            for (int k = 0; k < list.Count; k++) // Value  present or not
             {
                 if (list[k].FirstName.Equals(fname))
                 {
@@ -184,7 +184,7 @@ namespace Address_Book_System
                             Console.WriteLine(t);//print list
                         }
                     }
-                } //end of edit() method
+                } //
                 else
                 {
                     Console.WriteLine($"{fname} Name of Record Not Found "); //Print Record not found
@@ -223,13 +223,14 @@ namespace Address_Book_System
             }
             return false;
         }
-        public void SearchRecordCityOrState()  //Delte Record Method
-        {/* UC8:- Ability to search Person in a City or State across the multiple AddressBook
-                  - Search Result can show multiple person in the city or state
+        public void SearchRecordCityOrState()  //SearchRecordCityOrState Record Method
+        {
+            /* UC8:- Ability to search Person in a City or State across the multiple AddressBook
+                     - Search Result can show multiple person in the city or state
          */
             Console.WriteLine("1.City\n2.State\nEnter Choice:-");
-            
-            int choice2=Convert.ToInt32( Console.ReadLine());
+
+            int choice2 = Convert.ToInt32(Console.ReadLine());
             if (choice2 == 1)
             {
                 int count = 0;
@@ -241,21 +242,19 @@ namespace Address_Book_System
                 {
                     if (list[i].City.Equals(city))  //Cheack list of record and user inpute same or not
                     {
-                        count++;
-                        //list.Remove(this.person); //Remove Record from Person class
-                        Console.WriteLine($"{city} City Name of Record Present\n"); //Print Record City present
-                        foreach (var item in list)
-                        {
-                            
-                            DisplayRecord();
-                            Console.WriteLine($"\nNumber of contact in the City:- {city} are {count}");
-                        }
+                        count++;                     
+
+                        Console.WriteLine($"Name:- { list[i].FirstName} City:- { list[i].City} "); //UC9 View person name and city
+
                     }
                     else
                     {
                         Console.WriteLine($"{city} City Name of Record Not Found "); //Print Record not found
                     }
-                }
+
+                }                
+
+                
             }
             else
             {
@@ -269,20 +268,18 @@ namespace Address_Book_System
                     if (list[i].State.Equals(state))  //Cheack list of record and user inpute same or not
                     {
                         count++;
-                        //list.Remove(this.person); //Remove Record from Person class
-                        Console.WriteLine($"{state} State Name of Record Present\n"); //Print Record City present
-                        foreach (var item in list)
-                        {
-                            DisplayRecord();
-                            Console.WriteLine($"\nNumber of contact in the City:- {state} are {count}");
-                        }
+                        Console.WriteLine($"Name:- { list[i].FirstName} State:- { list[i].State} "); //UC9 View person name and city
                     }
                     else
                     {
                         Console.WriteLine($"{state} State Name of Record Not Found "); //Print Record not found
                     }
                 }
+               
+                Console.WriteLine($"\nNumber of contact in the City:- {state} are {count}");
             }
         }
+
     }
 }
+
