@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Address_Book_System
-{    /*     Ability to add a new Contact to Address Book - Use Console to add person details from AddressBookMain class
+{    /*     UC2:-Ability to add a new Contact to Address Book - Use Console to add person details from AddressBookMain class
             - Use Object Oriented Concepts to manage relationship between AddressBook and Contact Person
     */
     class Person
     {
+        internal static object firstname;
         private String lname, address, city, state, phone, zip, email; //Declaring (Creating) Variables
         public Person(String fname, String lname, String address, String city, String state, String phone, String zip,string email)
         {                                                   //constructor
